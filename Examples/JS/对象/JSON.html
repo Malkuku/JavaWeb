@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        var user = {
+            name :"Tom",
+            age : 10,
+            gender: "male",
+            //eat: function(){
+            //    alert("eat!");
+            //}
+            eat(){
+                alert("eat!");
+            }
+        }
+        user.eat();
+        var user_json = '{"name":"tom","age":18,"addr":["gz","hs","wda"]}';
+        var user1 = JSON.parse(user_json);
+        alert(user1.name);
+        var str = JSON.stringify(user1);
+        alert(str);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
