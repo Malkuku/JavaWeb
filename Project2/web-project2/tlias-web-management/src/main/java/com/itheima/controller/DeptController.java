@@ -45,11 +45,11 @@ public class DeptController {
     //}
 
     //通过RequestParam注解来获取
-    @RequestMapping(value = "/depts",method = RequestMethod.DELETE)
-    public Result deleteById(@RequestParam("id") Integer id){
-        log.info(String.valueOf(id));
-        return Result.success();
-    }
+//    @RequestMapping(value = "/depts",method = RequestMethod.DELETE)
+//    public Result deleteById(@RequestParam("id") Integer id){
+//        log.info(String.valueOf(id));
+//        return Result.success();
+//    }
 
     //形参名与请求参数名保持一致
     @RequestMapping(value = "/depts",method = RequestMethod.DELETE)
