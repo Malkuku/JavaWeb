@@ -10,5 +10,12 @@
            (#{item.empId},#{item.begin},#{item.end},#{item.company},#{item.job})
         </foreach>
     </insert>
+    <delete id="deleteByEmpId">
+        delete from emp_expr where id in
+        <foreach collection="list" item="empId" separator="," open="(" close=")">
+            #{empId}
+        </foreach>
+    </delete>
+
 
 </mapper>

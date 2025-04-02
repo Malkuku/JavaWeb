@@ -11,7 +11,12 @@ import java.util.List;
 
 public interface EmpService {
     PageResult<Emp> page(EmpQueryParam empQueryParam);
-
     void save(Emp emp);
 
+
+    void deleteById(List<Integer> list);
+
+    Emp getInfoById(Integer id);
+
+    void update(Emp emp);
 }

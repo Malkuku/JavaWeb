@@ -26,4 +26,10 @@ public interface EmpMapper {
             "    values(#{username},#{password},#{name},#{gender},#{phone},#{job},#{salary},#{image},#{entryDate},#{deptId},#{createTime},#{updateTime}) ")
 
     void save(Emp emp);
+
+    void deleteById(List<Integer> list);
+
+    Emp getInfoById(Integer id);
+
+    void update(Emp emp);
 }

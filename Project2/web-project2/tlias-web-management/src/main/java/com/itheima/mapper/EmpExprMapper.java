@@ -10,4 +10,6 @@ import java.util.List;
 public interface EmpExprMapper {
 
     void insertBach(List<EmpExpr> exprList);
+
+    void deleteByEmpId(List<Integer> list);
 }
