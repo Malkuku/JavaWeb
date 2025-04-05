@@ -15,4 +15,10 @@ public interface ReportMapper {
 
     @MapKey("name")
     List<Map<String,Object>> getEmpGenderData();
+
+    @MapKey("name")
+    List<Map<String, Object>> getStudentDegreeData();
+
+    @MapKey("clazzList")
+    List<Map<String, Object>> getStudentCountData();
 }

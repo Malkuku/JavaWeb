@@ -32,4 +32,6 @@ public interface EmpMapper {
     Emp getInfoById(Integer id);
 
     void update(Emp emp);
+
+    Emp selectByUsernameAndPassword(Emp emp);
 }

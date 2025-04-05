@@ -85,5 +85,8 @@
         from emp e left join emp_expr ee on e.id = ee.emp_id
         where e.id = #{id};
     </select>
+    <select id="selectByUsernameAndPassword" resultType="com.itheima.pojo.Emp">
+        select * from emp where username = #{username} and password = #{password}
+    </select>
 
 </mapper>

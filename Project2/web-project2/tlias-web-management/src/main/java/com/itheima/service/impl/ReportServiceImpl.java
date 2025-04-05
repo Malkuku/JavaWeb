@@ -1,6 +1,7 @@
 package com.itheima.service.impl;
 
 import com.itheima.mapper.ReportMapper;
+import com.itheima.pojo.ClazzOption;
 import com.itheima.pojo.JobOption;
 import com.itheima.service.ReportService;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,24 @@ public class ReportServiceImpl implements ReportService {
 
     @Autowired
     private ReportMapper reportMapper;
+
+    @Override
+    public ClazzOption getStudentCountData(){
+        List<Map<String,Object>> list = reportMapper.getStudentCountData();
+        log.info(list.toString());
+        List<Object> clazzList = list.stream().map(m->m.get("name").toString()).collect(Collectors.toList());
+        List<Object> dataList = list.stream().map(m->m.get("value").toString()).collect(Collectors.toList());
+        log.info("clazzList:{}", clazzList);
+        log.info("dataList:{}", dataList);
+        return new ClazzOption(clazzList,dataList);
+    }
+
+    @Override
+    public List<Map<String,Object>> getStudentDegreeData(){
+        List<Map<String,Object>> list = reportMapper.getStudentDegreeData();
+        log.info("list:{}", list);
+        return list;
+    }
 
     @Override
     public JobOption<Object> getEmpJobData() {

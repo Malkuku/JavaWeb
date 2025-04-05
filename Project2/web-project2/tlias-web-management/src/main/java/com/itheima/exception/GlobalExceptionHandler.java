@@ -25,5 +25,11 @@ public class GlobalExceptionHandler {
         String[] arr = errMsg.split(" ");
         return Result.error(arr[2] + " 已存在");
     }
+
+    @ExceptionHandler
+    public Result handleCustomException(CustomException e) {
+        log.error(e.getMessage());
+        return Result.error(e.getMessage());
+    }
 }
 

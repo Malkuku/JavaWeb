@@ -21,4 +21,21 @@
         count(*) value
         from emp group by gender
     </select>
+    <select id="getStudentDegreeData" resultType="java.util.Map">
+        select
+        (case when degree = 1 then '初中'
+        when degree = 2 then '高中'
+        when degree = 3 then '大专'
+        when degree = 4 then '本科'
+        when degree = 5 then '硕士'
+        when degree = 6 then '博士'
+        else '其他' end) name,
+        count(*) value
+        from student group by degree order by value asc
+    </select>
+
+    <select id="getStudentCountData" resultType="java.util.Map">
+        select coalesce(c.name, '未知班级') as name,count(*) value from student s left join clazz c on s.clazz_id = c.id
+        group by name order by value asc
+    </select>
 </mapper>
