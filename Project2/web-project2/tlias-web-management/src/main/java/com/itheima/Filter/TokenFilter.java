@@ -1,6 +1,8 @@
 package com.itheima.Filter;
 
+import com.itheima.utils.CurrentHolder;
 import com.itheima.utils.JwtUtils;
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
 
 @Slf4j
-//@WebFilter(urlPatterns = "/*")
+@WebFilter(urlPatterns = "/*")
 public class TokenFilter implements Filter {
 
     @Override
@@ -33,12 +35,18 @@ public class TokenFilter implements Filter {
             return;
         }
         try{
-            JwtUtils.parseToken(token);
+            Claims claims = JwtUtils.parseToken(token);
+            //将userId存入Local
+            Integer userId = Integer.valueOf(claims.get("id").toString());
+            CurrentHolder.setCurrentId(userId);
         }catch(Exception e){
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return;
         }
         //5.放行
         filterChain.doFilter(request, response);
+
+        //清除local
+        CurrentHolder.remove();
     }
 }
