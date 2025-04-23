@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.StudentMapper">
+    <insert id="insertStudent" parameterType="com.itheima.pojo.Student">
+        INSERT INTO student
+        (
+        name,
+        no,
+        gender,
+        phone,
+        <if test="idCard != null"> id_card, </if>
+        <if test="isCollege != null"> is_college, </if>
+        <if test="address != null"> address, </if>
+        <if test="graduationDate != null"> graduation_date, </if>
+        degree,
+        clazz_id,
+        violation_count,
+        violation_score
+        )
+        VALUES
+        (
+        #{name},
+        #{no},
+        #{gender},
+        #{phone},
+        <if test="idCard != null"> #{idCard}, </if>
+        <if test="isCollege != null">  #{isCollege}, </if>
+        <if test="address != null">  #{address}, </if>
+        <if test="graduationDate != null"> #{graduationDate}, </if>
+        #{degree},
+        #{clazzId},
+        #{violationCount},
+        #{violationScore}
+        )
+    </insert>
+    <update id="updateStudent">
+        UPDATE student
+        <set>
+            name = #{name},
+            no = #{no},
+            gender = #{gender},
+            phone = #{phone},
+            id_card = #{idCard},
+            <if test="isCollege != null">is_college = #{isCollege},</if>
+            <if test="address != null and address!='' ">address = #{address},</if>
+            <if test="graduationDate != null">graduation_date = #{graduationDate},</if>
+            <if test="degree != null ">degree = #{degree},</if>
+            clazz_id = #{clazzId},
+            violation_count = #{violationCount},
+            violation_score = #{violationScore}
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteStudentByIds">
+        delete from student where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+
+    <select id="getStudents" resultType="com.itheima.pojo.Student">
+        select s.*,c.name clazz_name from student s left join clazz c on s.clazz_id = c.id
+        <where>
+            <if test="degree != null">
+                and s.degree = #{degree}
+            </if>
+            <if test="clazzId != null">
+                and s.clazz_id = #{clazzId}
+            </if>
+            <if test="name != null and name != ''">
+                and s.name like concat('%',#{name},'%')
+            </if>
+        </where>
+        order by s.update_time desc
+    </select>
+    <select id="selectStudentById" resultType="com.itheima.pojo.Student">
+        select s.*,c.name clazz_name from student s left join clazz c on s.clazz_id = c.id
+        where s.id = #{id}
+    </select>
+</mapper>

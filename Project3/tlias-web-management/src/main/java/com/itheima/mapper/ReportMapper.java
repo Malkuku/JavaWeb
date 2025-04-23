@@ -1,0 +1,23 @@
+package com.itheima.mapper;
+
+import org.apache.ibatis.annotations.MapKey;
+import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
+import java.util.Map;
+
+@Mapper
+public interface ReportMapper {
+
+    @MapKey("pos")
+    List<Map<String,Object>> getEmpJobData();
+
+    @MapKey("name")
+    List<Map<String,Object>> getEmpGenderData();
+
+    @MapKey("name")
+    List<Map<String, Object>> getStudentDegreeData();
+
+    @MapKey("clazzList")
+    List<Map<String, Object>> getStudentCountData();
+}
