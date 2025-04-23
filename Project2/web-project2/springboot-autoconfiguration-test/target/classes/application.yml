@@ -1,0 +1,5 @@
+aliyun:
+  oss:
+    endpoint: https://oss-cn-guangzhou.aliyuncs.com
+    bucket-name: java-web-exercise
+    region: cn-guangzhou
